@@ -8,7 +8,6 @@ import java.util.Random;
 
 public class KMeans {
     public static void main(String[] args) throws IOException {
-        //==================test stream update method
         if (args.length < 3) {
             System.out.println("Usage: Kmeans <input-image> <k> <output-image>\nNow running under default setting...");
             int[] K = {2, 5, 10, 15, 20};
@@ -19,6 +18,7 @@ public class KMeans {
                 System.out.println("Compression ratios for " + img + ".jpg are:");
                 for (int k : K) {
                     ImageIO.write(kmeans_helper(originalImage, k), "jpg", new File("images/" + img + k + ".jpg"));
+                    // c.r. = (32k+n*logK(base 2))/32n
                     System.out.println("k=" + k + " => " + (k * 32 + N * Math.ceil(Math.log(k) / Math.log(2))) / (N * 32));
                 }
             }
