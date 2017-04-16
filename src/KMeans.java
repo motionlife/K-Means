@@ -15,11 +15,11 @@ public class KMeans {
             String[] images = {"Koala", "Penguins"};
             for (String img : images) {
                 BufferedImage originalImage = ImageIO.read(new File("images/" + img + ".jpg"));
-                int len = originalImage.getHeight() * originalImage.getWidth();
+                int N = originalImage.getHeight() * originalImage.getWidth();
                 System.out.println("Compression ratios for " + img + ".jpg are:");
                 for (int k : K) {
                     ImageIO.write(kmeans_helper(originalImage, k), "jpg", new File("images/" + img + k + ".jpg"));
-                    System.out.println("k=" + k + " => " + (double) (k * 4 + len) / (len * 4));
+                    System.out.println("k=" + k + " => " + (k * 32 + N * Math.ceil(Math.log(k) / Math.log(2))) / (N * 32));
                 }
             }
         } else {
